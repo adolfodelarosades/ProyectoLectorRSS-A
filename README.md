@@ -61,19 +61,19 @@ decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
 De esta forma, al poner el campo date de tipo Date, se interpretará directamente desde el String
 hacia un Date y **podremos ordenar por fecha** (si lo necesitáramos) de forma más eficiente.
 
-### Nivel A:
+#### Nivel A:
 
 * Se recuperarán los datos mínimos y se guardarán en un **array en memoria** para su posterior uso en la tablas correspondiente.
 
 * La imagen destacada del artículo ha de recuperarse del **nodo jetpack_featured_media_url**.
 
-### Nivel B:
+#### Nivel B:
 
 * Usando el **parámetro per_page** en la llamada de la URL que recupera el JSON, se pueden especificar más artículos que 10. **Implementar para que recupere 20** en vez de 10.
 * El **campo author** del JSON es de tipo entero y representa un **código**. Los datos del autor se recuperan de una llamada secundaria a la **URL: https://applecoding.com/wp-json/wp/v2/users/**. Si queremos recuperar el autor con el código 1 accederemos a **https://applecoding.com/wp-json/wp/v2/users/1**. El JSON recuperado tiene otra estructura diferente **donde deberemos recuperar el nodo name**.
 * Las **categorías del artículo** están en el **nodo Categories**, que es un array de tipo numérico. Cada número es un ID que hay que recuperar de forma específica usando la **URL: https://applecoding.com/wp-json/wp/v2/categories**. Si la categoría es la 304, hay que acceder a **https://applecoding.com/wp-json/wp/v2/categories/304** y recuperar una nueva estructura de dato **donde hemos de quedarnos con el nodo name**. **Recordad que puede haber más de una categoría y todas deben ser guardadas**.
 
-### Nivel C:
+#### Nivel C:
 
 - Los datos recuperados del JSON se guardarán en un **modelo en Core Data** con las tablas **POSTS**, **AUTORES** y **CATEGORIAS**, con sus correspondientes relaciones.
 
@@ -81,15 +81,15 @@ hacia un Date y **podremos ordenar por fecha** (si lo necesitáramos) de forma m
 
 Se creará una tabla de contenido prototipo para mostrar las noticias recuperadas de los datos del servidor de Apple Coding.
 
-### Nivel A:
+#### Nivel A:
 
 * Se creará la **tabla con celda prototipo de tipo BASIC**, con una **imagen a la izquierda** y el **textLabel a la derecha** con el título de la noticia.
 
-### Nivel B:
+#### Nivel B:
 
 * Se creará la **tabla con celda prototipo personalizada** donde se verá el **título de la noticia**, la **imagen destacada a la izquierda** y el **extracto de la misma**. Ha de estar en una **celda que crezca** en función al tamaño del extracto (**campo excerpt**).
 
-### Nivel C:
+#### Nivel C:
 
 * Se creará **la tabla con celda prototipo personalizada** donde se verá el **título de la noticia**, la **imagen destacada a la izquierda**, el **extracto** y deberá ir acompañado en la parte inferior de la **categoría o categorías**, así como el **autor** de la noticia. La **celda debe crecer dinámicamente en función del tamaño del extracto**.
 
@@ -107,15 +107,15 @@ En los niveles **B y C** la ventana detalle con el WKWebView deberá tener un **
 
 Se mostrará una vista de colección con los favoritos.
 
-### Nivel A:
+#### Nivel A:
 
 Celdas iguales con la imagen del artículo de fondo y el título.
 
-### Nivel B:
+#### Nivel B:
 
 Celdas como tarjetas que mostrarán el imagen, título y autor.
 
-### Nivel C:
+#### Nivel C:
 
 Leerá los datos de Core Data
 
